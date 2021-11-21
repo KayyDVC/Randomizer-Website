@@ -1,0 +1,38 @@
+* {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 0;
+  width: auto;
+}
+
+#site_title {
+  text-align: center;
+  background-color: hsl(240, 20%, 30%);
+  padding: 10px;
+}
+
+.title {
+  color: white;
+  font-size: 50px;
+}
+
+.text {
+  font-size: 20px;
+}
+
+p[name="directions"] {
+  padding: 20px;
+}
+
+div[name="indent"] {
+  padding-left: 40px;
+}
+
+form[name="initial_entry"] {
+  padding: 0 37%;
+}
+
+.boxed {
+  border: 3px solid hsl(240, 20%, 30%);
+
+  border-radius: 10px;
+}

@@ -1,40 +1,84 @@
 <!DOCTYPE html>
     <html lang= 'en'>
     <head> 
-        <link href= './styles.css' type = 'text/css' rel = 'stylesheet'>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" > 
+        <link href="./styles.css" type="text/css" rel="stylesheet">
         <title> Randomizer </title>
     </head>
     
     <body> 
-        <header class= 'site_title'>
-            <h1>List Randomizer</h1>
+        <header id="site_title">
+            <h1 class= 'title'>List Randomizer</h1>
         </header>
 
-        <p class= 'text' name= 'directions'>
-            <strong>Directions:</strong> This is a simple tool that will randomize any list given to it in no particular order. <br>
-            In order to get started, enter in a list with values seperated by a space and comma <br>
-            (Ex) Jimmy, Natalie, Herman, Jenna, Raul, 17, 92
+        <p class="text" name="directions">
+            <strong>Directions:</strong> This is a simple tool that will randomize any set of elements given to it in no particular order. <br>
+            In order to get started, enter an element click the add button. <br>
+                <div class="text" name="indent"> Ex. Saemus, 91283, or an entire sentence :) </div>
         </p>
         
             <br>
             <br>
       
-        <form class= 'inital_enter'>
-            <label for = 'enter_list'>Enter List:</label>
-            <input type = 'text' class = 'text_form' name= 'enter_list'>
-            <input type = 'submit' class = 'submit_button' name = 'intial_list_submit'>
+        <form name="initial_entry" class = "boxed">
+            <div class="formbox">
+                <label for="enter_list">Enter Item(s) to Add:</label>
+                <input type="text" id="enter_list">
+            </div>
+
+            <div class="formbox">
+                <button id="add"> Add </button>
+            </div>
+
+            <div class="formbox">
+                <button id="reset"> Reset </button>
+            </div>
         </form>
 
-        <p class = 'text' name = 'show_list'>
+        <p class="text" name="show_list">
             List Entered: 
-            <table class = 'text_box' name = 'ordered_list'>
-                <tc>
-                    <!--Add in JavaScript Later  -->
-                </tc>
-            </table>
+            <div id="boxed_ordered_list">
+              
+            </div>
             
 
         </p>
+
+    <script>
+        let entered_list = [];
+        //setting some unchangeable variables to simplify code 
+        const addButton = document.getElementById('add');
+        const resButton = document.getElementById('reset');
+        const enterBox = document.getElementById('enter_list');
+        const orderedListBox = document.getElementById('boxed_ordered_list');
+
+        const updateShownList = ev =>{
+            ev.preventDefault();
+                orderedListBox.innerHTML = entered_list;
+            
+        }
+
+
+        const getList = ev =>{        //setting the variable getList to a function with the event parameter(line 54) passed
+            ev.preventDefault();    //stops page from reloading after its clicked
+            entered_list.push(enterBox.value);
+            // console.log(entered_list);
+            enterBox.value = ''
+        }
+
+        const resetList = ev => {
+            ev.preventDefault();
+            entered_list = [];
+            console.log(entered_list);
+        }
+                   
+        addButton.addEventListener('click', getList);       //creates a new event to listen; Listens for a click of Add button, then runs getList function.
+        addButton.addEventListener('click', updateShownList);  
+        resButton.addEventListener('click', resetList);  //creates a new event to listen; Listens for a click of reset button, then runs resetList function.
+        resButton.addEventListener('click', updateShownList);     
+
+    </script>
         
 
     </body>
