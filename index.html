@@ -21,42 +21,53 @@
             <br>
             <br>
       
-        <form name="initial_entry" class = "boxed">
+        <form name="initial_entry" class="boxed">
             <div class="formbox">
                 <label for="enter_list">Enter Item(s) to Add:</label>
                 <input type="text" id="enter_list">
             </div>
 
             <div class="formbox">
-                <button id="add"> Add </button>
+                <button id="add" class="button"> Add </button>
             </div>
 
             <div class="formbox">
-                <button id="reset"> Reset </button>
+                <button id="reset" class="button"> Reset </button>
             </div>
         </form>
 
-        <p class="text" name="show_list">
-            List Entered: 
-            <div id="boxed_ordered_list">
-              
+        <fieldset class="text boxed float_left" name="show_list">
+            <p name="box_name">List Entered:</p> 
+            <div class="boxed boxed_list" name="boxed_ordered_list" >
+            </div>    
+        </fieldset>
+
+        <button id=randomize class="button">Randomize!</button>
+
+        <fieldset class="text boxed float_right" name="show_list">
+            <p name="box_name">Randomized List:</p> 
+            <div class="boxed boxed_list" name="boxed_randomized_list" >
             </div>
             
-
-        </p>
+        </fieldset>
 
     <script>
         let entered_list = [];
+        let randomized_list = [];
         //setting some unchangeable variables to simplify code 
-        const addButton = document.getElementById('add');
+        const addButton = document.getElementById('add');       //returns specific address of an element;no need to specify an index as this should not be a list.
         const resButton = document.getElementById('reset');
+        const ranButton = document.getElementById('randomize')
         const enterBox = document.getElementById('enter_list');
-        const orderedListBox = document.getElementById('boxed_ordered_list');
+        const orderedListBox = document.getElementsByName('boxed_ordered_list');    //return a list of all elements with this name; Crucial to specify index of desired element.
+        const randomizedListBox = document.getElementsByName('boxed_randomized_list');    //return a list of all elements with this name; Crucial to specify index of desired element.
+
+        // console.log(orderedListBox[0]);
+        // console.log(randomizedListBox[0]);
 
         const updateShownList = ev =>{
             ev.preventDefault();
-                orderedListBox.innerHTML = entered_list;
-            
+                orderedListBox[0].innerHTML = entered_list.join("  ");     //adds contents of entered_list to the first index in orderedListBox with two spaces in between each element
         }
 
 
@@ -70,13 +81,44 @@
         const resetList = ev => {
             ev.preventDefault();
             entered_list = [];
-            console.log(entered_list);
+            // console.log(entered_list);
+        }
+
+        const randomizeList = ev => {
+            ev.preventDefault();
+            let temp_array = [];    
+            for (let i=0; i<entered_list.length;i++){ //set temporary array containing same elements as retrieved array
+                temp_array[i] = entered_list[i];
+            }
+
+            //console.log("This is the temp array" + temp_array);
+
+            for (let j=entered_list.length; j<=temp_array.length;j--){  //sets j as multiplier for random function
+                if (temp_array.length==0){  //ends function once all values have been randomized
+                    break;
+                }
+                rand = Math.floor(Math.random()*j) //returns a number between 0 & end of given array
+                if (rand>=temp_array.length)        //testing
+                {
+                    console.log ("Error! Random number is greater than the list");
+                    break;
+                }
+                else{                                           
+                    randomized_list.push(temp_array[rand]);     //transfers random word from ordered array to randomized array
+                    temp_array.splice(rand,1);                  //removes that transferred word and pushes all remaining values to ensure there is no empty space
+                    // console.log("Randomized List: "+randomized_list);   
+                    // console.log("Remaining Tempt Array: "+temp_array);
+                }
+            }
+            
+            randomizedListBox[0].innerHTML = randomized_list.join("  "); //adds contents of randomized_list to the first index in randomizedListBox with two spaces in between each element
         }
                    
         addButton.addEventListener('click', getList);       //creates a new event to listen; Listens for a click of Add button, then runs getList function.
         addButton.addEventListener('click', updateShownList);  
         resButton.addEventListener('click', resetList);  //creates a new event to listen; Listens for a click of reset button, then runs resetList function.
         resButton.addEventListener('click', updateShownList);     
+        ranButton.addEventListener('click', randomizeList)
 
     </script>
         

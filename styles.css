@@ -10,6 +10,22 @@
   padding: 10px;
 }
 
+#randomize {
+  display: block;
+  float: left;
+  margin: 250px 250px 0 250px;
+}
+
+#enter_list {
+  height: 30px;
+  width: 200px;
+}
+.button {
+  margin: 10px;
+  height: 30px;
+  width: 100px;
+}
+
 .title {
   color: white;
   font-size: 50px;
@@ -17,6 +33,31 @@
 
 .text {
   font-size: 20px;
+}
+
+.boxed {
+  border: 3px;
+  border-style: solid;
+  box-sizing: border-box;
+  border-color: hsl(240, 20%, 30%);
+  margin: 10px 30px;
+}
+
+.float_left {
+  float: left;
+}
+.float_right {
+  float: right;
+}
+
+.boxed_list {
+  display: block;
+  height: 90%;
+  width: 93%;
+}
+
+p[name="box_name"] {
+  text-align: center;
 }
 
 p[name="directions"] {
@@ -28,11 +69,15 @@ div[name="indent"] {
 }
 
 form[name="initial_entry"] {
-  padding: 0 37%;
+  text-align: center;
+  height: 175px;
+  width: 300px;
+  margin-left: 45%;
+  margin-bottom: 100px;
 }
 
-.boxed {
-  border: 3px solid hsl(240, 20%, 30%);
-
-  border-radius: 10px;
+fieldset[name="show_list"] {
+  height: 500px;
+  width: 35%;
+  display: block;
 }
