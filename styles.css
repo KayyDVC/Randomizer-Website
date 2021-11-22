@@ -81,3 +81,21 @@ fieldset[name="show_list"] {
   width: 35%;
   display: block;
 }
+
+a[name="self_tag"] {
+  color: white;
+  font-size: 15px;
+  float: left;
+  padding-left: 10px;
+}
+
+footer {
+  position: fixed; /*Makes footer stay at bottom of page regardless of total content*/
+  width: 100%; /* Expands footer color to the entirety of the bottom*/
+  bottom: 0; /*sets margin to be absolutely 0 pixels from the bottom of the screen*/
+  display: block;
+  background: hsl(240, 20%, 30%);
+  border-top: 5px solid hsl(240, 20%, 30%); /*adds black lines above and below logos. Helps bottom bar look more full */
+  border-bottom: 5px solid hsl(240, 20%, 30%);
+  line-height: 30px; /*Sets height of black bar*/
+}
