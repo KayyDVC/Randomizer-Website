@@ -42,7 +42,7 @@
             </div>    
         </fieldset>
 
-        <button id=randomize class="button">Randomize!</button>
+        <button id="randomize" class="button">RANDOMIZE!</button>
 
         <fieldset class="text boxed float_right" name="show_list">
             <p name="box_name">Randomized List:</p> 
@@ -60,6 +60,7 @@
         const resButton = document.getElementById('reset');
         const ranButton = document.getElementById('randomize')
         const enterBox = document.getElementById('enter_list');
+        const clrButton=document.getElementById('clear');
         const orderedListBox = document.getElementsByName('boxed_ordered_list');    //return a list of all elements with this name; Crucial to specify index of desired element.
         const randomizedListBox = document.getElementsByName('boxed_randomized_list');    //return a list of all elements with this name; Crucial to specify index of desired element.
 
@@ -79,13 +80,14 @@
             enterBox.value = ''
         }
 
-        const resetList = ev => {
+        const resetList = ev => {   //resets all values on webpage
             ev.preventDefault();
             entered_list = [];
+            randomizedListBox[0].innerHTML = '';
             // console.log(entered_list);
         }
 
-        const randomizeList = ev => {
+        const randomizeList = ev => {       //randomizes list, then adds RL content to the matching box
             ev.preventDefault();
             let temp_array = [];    
             for (let i=0; i<entered_list.length;i++){ //set temporary array containing same elements as retrieved array
@@ -119,11 +121,10 @@
         addButton.addEventListener('click', updateShownList);  
         resButton.addEventListener('click', resetList);  //creates a new event to listen; Listens for a click of reset button, then runs resetList function.
         resButton.addEventListener('click', updateShownList);     
-        ranButton.addEventListener('click', randomizeList)
+        ranButton.addEventListener('click', randomizeList);
 
     </script>
         
-
     </body>
 
     <footer>
