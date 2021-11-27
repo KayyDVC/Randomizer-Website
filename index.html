@@ -8,49 +8,51 @@
     </head>
     
     <body> 
-        <header id="site_title">
+        <header class="site_title">
             <h1 class= 'title'>List Randomizer</h1>
         </header>
 
-        <p class="text" name="directions">
+        <p class="text directions">
             <strong>Directions:</strong> This is a simple tool that will randomize any set of elements given to it in no particular order. <br>
             In order to get started, enter an element click the add button. <br>
-                <div class="text" name="indent"> Ex. Saemus, 91283 </div>
+                <div class="text indent"> Ex. Saemus, 91283 </div>
         </p>
         
             <br>
             <br>
-      
-        <form name="initial_entry" class="boxed">
-            <div class="formbox">
-                <label for="enter_list">Enter Item(s) to Add:</label>
-                <input type="text" id="enter_list">
+        
+        <form class="boxed initial-entry">
+            <div>
+                <label for="enter-list">Enter Item(s) to Add:</label>
+                <input type="text" id="enter-list">
             </div>
 
-            <div class="formbox">
+            <div>
                 <button id="add" class="button"> Add </button>
             </div>
 
-            <div class="formbox">
+            <div >
                 <button id="reset" class="button"> Reset </button>
             </div>
         </form>
+        
+        <div class="flexbox-container">
 
-        <fieldset class="text boxed float_left" name="show_list">
-            <p name="box_name">List Entered:</p> 
-            <div class="boxed boxed_list" name="boxed_ordered_list" >
-            </div>    
-        </fieldset>
-
-        <button id="randomize" class="button">RANDOMIZE!</button>
-
-        <fieldset class="text boxed float_right" name="show_list">
-            <p name="box_name">Randomized List:</p> 
-            <div class="boxed boxed_list" name="boxed_randomized_list" >
+            <div class="text boxed show-list" >
+                <p class="box-name">List Entered:</p> 
+                <div class="boxed_list" id="boxed_ordered_list" >
+                </div>    
             </div>
-            
-        </fieldset>
 
+            <button id="randomize" class="button button-middle">RANDOMIZE!</button>
+
+            <div class="text boxed show-list" >
+                <p class="box-name">Randomized List:</p> 
+                <div class="boxed_list" id="boxed_randomized_list" >
+                </div>
+                
+            </div>
+      </div>
 
     <script>
         let entered_list = [];
@@ -59,17 +61,17 @@
         const addButton = document.getElementById('add');       //returns specific address of an element;no need to specify an index as this should not be a list.
         const resButton = document.getElementById('reset');
         const ranButton = document.getElementById('randomize')
-        const enterBox = document.getElementById('enter_list');
+        const enterBox = document.getElementById('enter-list');
         const clrButton=document.getElementById('clear');
-        const orderedListBox = document.getElementsByName('boxed_ordered_list');    //return a list of all elements with this name; Crucial to specify index of desired element.
-        const randomizedListBox = document.getElementsByName('boxed_randomized_list');    //return a list of all elements with this name; Crucial to specify index of desired element.
+        const orderedListBox = document.getElementById('boxed_ordered_list');    
+        const randomizedListBox = document.getElementById('boxed_randomized_list');    
 
         // console.log(orderedListBox[0]);
         // console.log(randomizedListBox[0]);
 
         const updateShownList = ev =>{
             ev.preventDefault();
-                orderedListBox[0].innerHTML = entered_list.join("  ");     //adds contents of entered_list to the first index in orderedListBox with two spaces in between each element
+                orderedListBox.innerHTML = entered_list.join("  ");     //adds contents of entered_list to the first index in orderedListBox with two spaces in between each element
         }
 
 
@@ -83,16 +85,18 @@
         const resetList = ev => {   //resets all values on webpage
             ev.preventDefault();
             entered_list = [];
-            randomizedListBox[0].innerHTML = '';
-            // console.log(entered_list);
+            randomized_list = [];
+            randomizedListBox.innerHTML = '';
+            console.log(entered_list);
         }
 
         const randomizeList = ev => {       //randomizes list, then adds RL content to the matching box
             ev.preventDefault();
-            let temp_array = [];    
+            let temp_array = []; 
             for (let i=0; i<entered_list.length;i++){ //set temporary array containing same elements as retrieved array
                 temp_array[i] = entered_list[i];
             }
+           
 
             //console.log("This is the temp array" + temp_array);
 
@@ -114,7 +118,7 @@
                 }
             }
             
-            randomizedListBox[0].innerHTML = randomized_list.join("  "); //adds contents of randomized_list to the first index in randomizedListBox with two spaces in between each element
+            randomizedListBox.innerHTML = randomized_list.join("  "); //adds contents of randomized_list to the first index in randomizedListBox with two spaces in between each element
         }
                    
         addButton.addEventListener('click', getList);       //creates a new event to listen; Listens for a click of Add button, then runs getList function.
@@ -128,6 +132,6 @@
     </body>
 
     <footer>
-        <a name="self_tag" href="https://github.com/KayyDVC/Randomizer-Website">@KayyDVC</a>
+        <a class="self-tag" href="https://github.com/KayyDVC/Randomizer-Website">@KayyDVC</a>
     </footer>
     <!-- Test -->
