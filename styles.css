@@ -4,6 +4,11 @@
   margin: 0;
   width: auto;
 }
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
 
 #enter-list {
   height: 40%;
@@ -97,10 +102,7 @@
 }
 
 footer {
-  position: fixed; /*Makes footer stay at bottom of page regardless of total content*/
-  width: 100%; /* Expands footer color to the entirety of the bottom*/
-  bottom: 0; /*sets margin to be absolutely 0 pixels from the bottom of the screen*/
   background: hsl(240, 20%, 30%);
   padding: 10px;
-  margin-top: 30px;
+  margin-top: auto;
 }
